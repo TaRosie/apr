@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script type="text/javascript">
+
+	$(document).ready(function(){
+
+        $('#tempsub').click(
+            function(){
+
+                let city = $('#city').val();
+        
+                $.ajax({
+
+                url: "http://api.openweathermap.org/data/2.5/weather?units=imperial&q=" + city + "&appid=2c2040afb7cfa8b568828b5a93b9c400",
+            
+                dataType: 'json',
+                success: function(data) {
+                    document.getElementById("temp").innerHTML = data.main.temp;
+
+                    $('temp').html(data.main.temp);
+                },
+                error: function() {
+                    alert("error");
+                }
+                });        
+            });
+    });
+
+        </script>
+        <style>
+            body {
+                      background-image:url("https://openweathermap.org/themes/openweathermap/assets/img/new-history-forecast-bulk.png");
+                      font-size: 20px;
+                      text-align: center;
+                      margin-top: 300px;
+                      padding:20px;
+                    }
+        </style>
+    </head>
+<body>
+<div style="background-color: rgba(255,255,255,0.5);">
+    <h2>Check the weather by inserting:</h2>
+
+    City Name: <input type="text" name="city" id="city"><input type="button" id="tempsub" value="Submit">
+ 
+    <span id="temp">0</span> <span>℉</span>
+</div>
+
+</body>
+</html>
